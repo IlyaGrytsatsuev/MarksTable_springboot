@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/FormSubjectsListStyle.css">
+</head>
+<body>
+<nav>
+    <div class="links">
+        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Back</a>
+        <a th:href="@{/Forms}">Home</a>
+        <a th:href="@{'/Forms/addSubject:form=' + ${res.getForm_id()}}">addSubject</a>
+    </div>
+    <p>Subjects</p>
+</nav>
+
+<p class="empty-message" th:if="${subjects_ids.empty}">
+   No subjects added
+</p>
+<div class="subjects-list">
+    <div class="subject-card" th:each="subject_name : ${subjects_names}">
+        <a th:text="${subject_name}">name</a>
+        <form th:action="@{'/Forms/editSubject:form=' + ${res.getForm_id()} + ':subject='
+     + ${subjects_ids.get(subjects_names.indexOf(subject_name))}}" th:method="GET">
+            <input type="submit" value="Edit">
+        </form>
+        <form th:action="@{'/Forms/deleteSubject:form=' + ${res.getForm_id()} + ':subject='
+  + ${subjects_ids.get(subjects_names.indexOf(subject_name))}}" th:method="Delete">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+    <link rel="stylesheet" href="/FormsListStyle.css">
+</head>
+<body class="container">
+<nav>
+    <a th:href="@{/Forms/addForm}">Add new form</a>
+    <p>Forms</p>
+</nav>
+<p class = "empty-message" th:if="${list.empty}">
+    No forms added
+</p>
+<div class="forms-list">
+        <div class="form-card" th:each="form : ${list}">
+            <span class="form-span">
+                <a class="form-link" th:href="@{'/Forms/Students:form=' + ${form.getId()}}" th:text="${form.getForm_name()}"> Title</a>
+
+                <form th:action="@{'/Forms/editForm:form=' + ${form.getId()}}" th:method="GET">
+                    <input class="edit-button" type="submit" value="Edit">
+                </form>
+
+                <form th:action="@{'/Forms/deleteForm:form=' + ${form.getId()}}" th:method="Delete">
+                    <input class="delete-button" type="submit" value="Delete">
+                </form>
+            </span>
+        </div>
+</div>
+</body>
+</html>

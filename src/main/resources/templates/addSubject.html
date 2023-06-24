@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addSubject</title>
+    <link rel="stylesheet" href="/NewAndEditStyle.css">
+</head>
+<body>
+<nav>
+    <div class="links">
+        <a th:href="@{'/Forms/form=' + ${form_id} + '/Subjects'}">Back</a>
+        <a th:href="@{/Forms}">Home</a>
+    </div>
+    <p>Add subject</p>
+</nav>
+<div class="form-block">
+    <form th:method="post" th:action="@{'/Forms/addSubject:form=' + ${form_id}}">
+        <input type="text" name="subject_name" placeholder="subject name">
+        <input type="submit" value="Add">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/NewMarkStyle.css">
+</head>
+<body>
+<nav>
+    <div class="links">
+        <a th:href="@{'/Forms/Students:form=' + ${form_id} + '/Subjects:student=' +${student_id}}">Back</a>
+        <a th:href="@{/Forms}">Home</a>
+    </div>
+    <p>Add new mark</p>
+</nav>
+
+<div class="form-block">
+    <form th:action="@{'/Forms/addMark:form=' +
+    ${mark.getForm_id()} +':subject=' + ${mark.getSubject_id()} + ':student=' + ${mark.getStudent_id()}}" th:method="POST" th:object="${mark}">
+        <input type="text" th:field="*{mark_value}" placeholder="mark value">
+        <input type="date" th:field="*{date}" id="mark_date" placeholder="mark value">
+        <input type="submit">
+    </form>
+</div>
+
+</body>
+</html>
