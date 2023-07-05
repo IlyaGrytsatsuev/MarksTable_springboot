@@ -8,15 +8,16 @@
 <body>
 <nav>
     <div class="links">
-        <a th:href="@{'/Forms/form=' + ${form_id} + '/Subjects'}">Back</a>
-        <a th:href="@{/Forms}">Home</a>
+        <a th:href="@{'/Forms/form=' + ${form_id} + '/Subjects'}">Назад</a>
+        <a th:href="@{/Forms}">Список классов</a>
+        <a href="/logout">Выйти</a>
     </div>
-    <p>Add subject</p>
+    <p>Добавление предмета</p>
 </nav>
 <div class="form-block">
     <form th:method="post" th:action="@{'/Forms/addSubject:form=' + ${form_id}}">
-        <input type="text" name="subject_name" placeholder="subject name">
-        <input type="submit" value="Add">
+        <input type="text" name="subject_name" placeholder="Название предмета">
+        <input type="submit" value="Добавить">
     </form>
 </div>
 </body>

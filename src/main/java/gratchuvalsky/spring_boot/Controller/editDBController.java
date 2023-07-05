@@ -2,6 +2,8 @@ package gratchuvalsky.spring_boot.Controller;
 
 import gratchuvalsky.spring_boot.DAO.MarksTablesDao;
 import gratchuvalsky.spring_boot.Model.*;
+import gratchuvalsky.spring_boot.service.PersonDetailsService;
+import gratchuvalsky.spring_boot.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,15 @@ import java.util.List;
 @RequestMapping("/Forms")
 @Controller
 public class  editDBController {
-    MarksTablesDao dao;
+    private final MarksTablesDao dao;
+    private final PersonDetailsService personDetailsService;
+    private final RegistrationService registrationService;
 
     @Autowired
-    public editDBController(MarksTablesDao dao){
+    public editDBController(MarksTablesDao dao, PersonDetailsService service, PersonDetailsService personDetailsService, RegistrationService registrationService){
         this.dao = dao;
+        this.personDetailsService = personDetailsService;
+        this.registrationService = registrationService;
     }
 
 
@@ -64,6 +70,9 @@ public class  editDBController {
         StudentSubjectsList subjectsAndMarks =
                 dao.getStudentSubjectsAndMarks(form_id, student_id);
 
+        int acccount_id = dao.getStudentAccountId(student_id);
+        model.addAttribute("auth",
+                        personDetailsService.getStudentLoginAndPassword(acccount_id));
         model.addAttribute("subjectsAndMarks", subjectsAndMarks);
         model.addAttribute("form_id", form_id);
         return "SubjectsList";
@@ -153,14 +162,17 @@ public class  editDBController {
     public String addStudent(@PathVariable("form_id") int form_id,
                              @RequestParam("name") String name,
                              @RequestParam("surname") String surname){
-        dao.addStudent(name, surname, form_id);
+        int account_id = registrationService.register();
+        dao.addStudent(name, surname, form_id, account_id);
         return "redirect:/Forms/Students:form=" + form_id;
     }
 
     @DeleteMapping("/deleteStudent:form={form_id}:student={student_id}")
     public String deleteStudent(@PathVariable("form_id") int form_id,
                                 @PathVariable("student_id") int student_id ){
+        int account_id = dao.getStudentAccountId(student_id);
         dao.deleteStudent(student_id);
+        personDetailsService.deletePerson(account_id);
         return "redirect:/Forms/Students:form=" + form_id ;
     }
     @GetMapping("/editStudent:form={form_id}:student={student_id}")

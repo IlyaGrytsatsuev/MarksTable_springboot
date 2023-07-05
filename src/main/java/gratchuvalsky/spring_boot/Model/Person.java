@@ -16,13 +16,26 @@ public class Person {
 
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    private String role;
 
     public Person(){
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Person(String login, String password){
         this.login = login;
         this.password = password;
     }
+
+
 
     public int getId() {
         return id;

@@ -7,11 +7,14 @@
 </head>
 <body class="container">
 <nav>
-    <a th:href="@{/Forms/addForm}">Add new form</a>
-    <p>Forms</p>
+    <div class ="links">
+        <a th:href="@{/Forms/addForm}">Добавить новый класс</a>
+        <a href="/logout">Выйти</a>
+    </div>
+    <p>Список классов</p>
 </nav>
 <p class = "empty-message" th:if="${list.empty}">
-    No forms added
+    Нет добавленных классов
 </p>
 <div class="forms-list">
         <div class="form-card" th:each="form : ${list}">
@@ -19,11 +22,11 @@
                 <a class="form-link" th:href="@{'/Forms/Students:form=' + ${form.getId()}}" th:text="${form.getForm_name()}"> Title</a>
 
                 <form th:action="@{'/Forms/editForm:form=' + ${form.getId()}}" th:method="GET">
-                    <input class="edit-button" type="submit" value="Edit">
+                    <input class="edit-button" type="submit" value="Изменить">
                 </form>
 
                 <form th:action="@{'/Forms/deleteForm:form=' + ${form.getId()}}" th:method="Delete">
-                    <input class="delete-button" type="submit" value="Delete">
+                    <input class="delete-button" type="submit" value="Удалить">
                 </form>
             </span>
         </div>

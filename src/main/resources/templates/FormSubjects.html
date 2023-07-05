@@ -8,26 +8,27 @@
 <body>
 <nav>
     <div class="links">
-        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Back</a>
-        <a th:href="@{/Forms}">Home</a>
-        <a th:href="@{'/Forms/addSubject:form=' + ${res.getForm_id()}}">addSubject</a>
+        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Назад</a>
+        <a th:href="@{/Forms}">Список классов</a>
+        <a th:href="@{'/Forms/addSubject:form=' + ${res.getForm_id()}}">Добавить предмет</a>
+        <a href="/logout">Выйти</a>
     </div>
-    <p>Subjects</p>
+    <p>Список предметов</p>
 </nav>
 
 <p class="empty-message" th:if="${subjects_ids.empty}">
-   No subjects added
+    Нет добавленных предметов
 </p>
 <div class="subjects-list">
     <div class="subject-card" th:each="subject_name : ${subjects_names}">
         <a th:text="${subject_name}">name</a>
         <form th:action="@{'/Forms/editSubject:form=' + ${res.getForm_id()} + ':subject='
      + ${subjects_ids.get(subjects_names.indexOf(subject_name))}}" th:method="GET">
-            <input type="submit" value="Edit">
+            <input type="submit" value="Изменить">
         </form>
         <form th:action="@{'/Forms/deleteSubject:form=' + ${res.getForm_id()} + ':subject='
   + ${subjects_ids.get(subjects_names.indexOf(subject_name))}}" th:method="Delete">
-            <input type="submit" value="Delete">
+            <input type="submit" value="Удалить">
         </form>
     </div>
 </div>

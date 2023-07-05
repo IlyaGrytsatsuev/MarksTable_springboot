@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/loginStyle.css">
+</head>
+<nav>
+    <a th:href="@{/signUp}">Htubcnhfwbz</a>
+    <p>Авторизация</p>
+</nav>
+<div class="form-block">
+    <form method="post" action="/process_login">
+        <input type="text" name="username" placeholder="Логин">
+        <input type="text" name="password" placeholder="Пароль">
+        <input type="submit" value="Войти">
+    </form>
+</div>
+
+<div th:if="${param.error}" style="color: red">
+</div>
+<body>
+
+</body>
+</html>

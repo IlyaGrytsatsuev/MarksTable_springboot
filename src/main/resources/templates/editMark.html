@@ -9,24 +9,25 @@
 <nav>
     <div class="links">
         <a th:href="@{'/Forms/Students:form=' + ${form_id}
-+ '/Subjects:student=' +${student_id} }">Back</a>
-        <a th:href="@{/Forms}">Home</a>
++ '/Subjects:student=' +${student_id} }">Назад</a>
+        <a th:href="@{/Forms}">Список классов</a>
+        <a href="/logout">Выйти</a>
     </div>
-    <p th:text="${date}">Edit mark</p>
+    <p th:text="${date}">Редактирование оценки</p>
 </nav>
 
 <div class="form-block">
     <form class="edit-form" th:action="@{'/Forms/editMark:form=' + ${form_id} +
         ':subject=' + ${subject_id} + ':student='
          + ${student_id} + ':mark=' + ${mark_id}}" th:method="PATCH" >
-        <input type="text" name="mark_value" placeholder="mark value">
-        <input type="submit" value="Edit">
+        <input type="text" name="mark_value" placeholder="Оценка">
+        <input type="submit" value="Изменить">
     </form>
 
     <form class="delete-form" th:action="@{'/Forms/deleteMark:form=' + ${form_id} +
         ':subject=' + ${subject_id} + ':student='
          + ${student_id} + ':mark=' + ${mark_id}}" th:method="Delete" >
-        <input type="submit" value="Delete">
+        <input type="submit" value="Удалить">
     </form>
 </div>
 

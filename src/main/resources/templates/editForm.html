@@ -7,13 +7,16 @@
 </head>
 <body>
 <nav>
-    <a th:href="@{/Forms}">Back</a>
-    <p>Edit form</p>
+    <div class="links">
+        <a th:href="@{/Forms}">Назад</a>
+        <a href="/logout">Выйти</a>
+    </div>
+    <p>Редактирование класса</p>
 </nav>
 <div class="form-block">
     <form th:action="@{'/Forms/editForm:form=' + ${form_id} }" th:method="PATCH" >
-        <input type="text" name="form_name" placeholder="form name">
-        <input type="submit" value="edit">
+        <input type="text" name="form_name" placeholder="Название класса">
+        <input type="submit" value="Изменить">
     </form>
 </div>
 

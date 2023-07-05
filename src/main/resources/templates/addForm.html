@@ -7,13 +7,18 @@
 </head>
 <body>
 <nav>
-    <a th:href="@{/Forms}">Back</a>
+    <div class="links">
+        <a th:href="@{/Forms}">Назад</a>
+        <a href="/logout">Выйти</a>
+    </div>
+    <p>Добавление нового класса</p>
+
 </nav>
 
 <div class="form-block">
     <form th:action="@{/Forms/addForm}" th:method="POST" >
-        <input type="text" name="form_name" placeholder="form name">
-        <input type="submit">
+        <input type="text" name="form_name" placeholder="Название класса">
+        <input type="submit" value="Добавить">
     </form>
 </div>
 

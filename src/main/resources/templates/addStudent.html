@@ -8,16 +8,17 @@
 <body>
 <nav>
     <div class="links">
-        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Back</a>
-        <a th:href="@{/Forms}">Home</a>
+        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Назад</a>
+        <a th:href="@{/Forms}">Список классов</a>
+        <a href="/logout">Выйти</a>
     </div>
-    <p>Add student</p>
+    <p>Добавление ученика</p>
 </nav>
 
 <div class="form-block">
     <form th:action="@{'/Forms/addStudent:form=' + ${form_id}}" th:method="POST" >
-        <input type="text" name="name" placeholder="name">
-        <input type="text" name="surname" placeholder="surname">
+        <input type="text" name="surname" placeholder="Фамилия">
+        <input type="text" name="name" placeholder="Имя">
         <input type="submit">
     </form>
 </div>

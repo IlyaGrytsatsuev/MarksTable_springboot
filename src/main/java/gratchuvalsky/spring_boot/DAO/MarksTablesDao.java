@@ -34,7 +34,17 @@ public class MarksTablesDao {
         formsList = new ArrayList<>();
     }
 
+    public String getRoleById(int id){
+        String res = jdbcTemplate.queryForObject("select role_type from" +
+                "role where id = ?", new Object[]{id}, String.class);
+        return res;
+    }
 
+    public int getIdByRole(String role){
+        int res = jdbcTemplate.queryForObject("select id from role" +
+                "where role_type = ?", new Object[]{role}, Integer.class);
+        return res;
+    }
     public void addForm(String form_name) {
         jdbcTemplate.update("insert into forms(form_name) values(?)", form_name);
     }
@@ -47,8 +57,9 @@ public class MarksTablesDao {
         jdbcTemplate.update("update forms set form_name = ? where id = ?", name, form_id);
     }
 
-    public void addStudent(String name, String surname, int form_id) {
-        jdbcTemplate.update("insert into students(name, surname, form_id) VALUES(?,?,?) ", name, surname, form_id);
+    public void addStudent(String name, String surname, int form_id, int account_id) {
+        jdbcTemplate.update("insert into students(name, surname, form_id, account_id)" +
+                " VALUES(?,?,?, ?) ", name, surname, form_id, account_id);
     }
 
     public void editStudentNameSurname(String name, String surname, int student_id){
@@ -59,6 +70,12 @@ public class MarksTablesDao {
         jdbcTemplate.update("delete from students where id = ?", student_id);
     }
 
+    public int getStudentAccountId(int student_id){
+        int res = jdbcTemplate.queryForObject("select account_id" +
+                " from students where id = ?",
+                new Object[]{student_id}, Integer.class);
+        return res;
+    }
 
     public void addSubject(String subject_name, int form_id) {
         jdbcTemplate.update("insert into subjects(subject_name, form_id) values(?, ?)", subject_name, form_id);
