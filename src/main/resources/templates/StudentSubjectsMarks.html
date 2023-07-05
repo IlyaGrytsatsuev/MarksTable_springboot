@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="/SubjectsAndMarksStyle.css">
+  <nav>
+    <div class="links">
+      <a href="/logout">Выйти</a>
+    </div>
+    <p th:text = "${subjectsAndMarks.getStudentName()} +
+    ' ' + ${subjectsAndMarks.getStudentSurname()}">name
+    </p>
+  </nav>
+
+  <p class="empty-message" th:if="${subjectsAndMarks.getSubjectsList().isEmpty()}">
+    Нет добавленных предметов
+  </p>
+
+  <table th:if="${!subjectsAndMarks.getSubjectsList().isEmpty()}">
+    <tr>
+      <th>Предметы</th>
+      <th>Оценки</th>
+    </tr>
+    <tr class = "subject-row" th:each="subject :
+    ${subjectsAndMarks.getSubjectsList()}">
+      <td class = "subject_name">
+        <span th:text="${subject.getName()}"></span>
+        <span>
+                <a th:href="@{'/Forms/addMark:form=' +
+                ${form_id} +':subject=' + ${subject.getId()}
+                + ':student=' + ${subject.getStudent_id()}}">+</a>
+            </span>
+      </td>
+      <td class = "marks-column">
+            <span class="empty-marks" th:if="${subject.getMarks().isEmpty()}">
+                Нет оценок
+            </span>
+        <span class="mark" th:each="mark : ${subject.getMarks()}">
+                <a th:href="@{'/Forms/editMark:form=' + ${form_id} +
+                ':subject=' + ${subject.getId()} + ':student='
+                + ${subjectsAndMarks.getStudent_id()} + ':mark='
+                + ${mark.getKey()}}" th:text="${mark.getValue()}">mark</a>
+            </span>
+      </td>
+    </tr>
+  </table>
+</head>
+<body>
+
+</body>
+</html>

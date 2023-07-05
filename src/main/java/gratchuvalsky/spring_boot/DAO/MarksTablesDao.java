@@ -76,6 +76,16 @@ public class MarksTablesDao {
                 new Object[]{student_id}, Integer.class);
         return res;
     }
+    public List<Integer> getStudentIdAndFormIdByAuthId(int authId){
+        List<Integer> res = new ArrayList<>();
+        int id = jdbcTemplate.queryForObject("select id from students " +
+                "where account_id = ?", new Object[]{authId}, Integer.class);
+        int form_id = jdbcTemplate.queryForObject("select form_id from students " +
+                "where account_id = ?", new Object[]{authId}, Integer.class);
+        res.add(id);
+        res.add(form_id);
+        return res;
+    }
 
     public void addSubject(String subject_name, int form_id) {
         jdbcTemplate.update("insert into subjects(subject_name, form_id) values(?, ?)", subject_name, form_id);

@@ -51,13 +51,16 @@ public class SecurityConfig {
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) ->
                 requests
+                        .requestMatchers("/SubMarks/**").hasRole("USER")
                         .requestMatchers("/auth",
-                                "/error", "/loginStyle.css", "/signUp").permitAll()
-                        .anyRequest().hasAnyRole("ADMIN"));
+                                "/error", "/loginStyle.css",
+                                "/signUp", "/login_success",
+                                "/SubjectsAndMarksStyle.css").permitAll()
+                        .anyRequest().hasRole("ADMIN"));
         http.userDetailsService(personDetailsService);
         http.formLogin((formLogin) -> formLogin.loginPage("/auth")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/Forms", true)
+                .defaultSuccessUrl("/login_success", true)
                 .failureUrl("/auth?error"));
         http.logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/auth"));
         return http.build();
