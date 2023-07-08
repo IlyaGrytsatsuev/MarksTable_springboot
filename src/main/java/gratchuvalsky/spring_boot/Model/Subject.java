@@ -16,7 +16,22 @@ public class Subject {
     private List<Date> dates;
 
     private int student_id;
+    private int medium_mark;
 
+    public int getMedium_mark() {
+        return medium_mark;
+    }
+    public void countMediumMark(){
+        int sum = 0;
+        for(int key : marks.keySet())
+            sum+=marks.get(key);
+        sum/=marks.keySet().size();
+        this.medium_mark = sum;
+    }
+
+    public void setMedium_mark(int medium_mark) {
+        this.medium_mark = medium_mark;
+    }
 
     public Subject(){
         name = null;

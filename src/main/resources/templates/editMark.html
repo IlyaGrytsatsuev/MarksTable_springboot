@@ -9,7 +9,7 @@
 <nav>
     <div class="links">
         <a th:href="@{'/Forms/Students:form=' + ${form_id}
-+ '/Subjects:student=' +${student_id} }">Назад</a>
++ '/Subjects:student=' +${mark.getStudent_id()} }">Назад</a>
         <a th:href="@{/Forms}">Список классов</a>
         <a href="/logout">Выйти</a>
     </div>
@@ -17,16 +17,20 @@
 </nav>
 
 <div class="form-block">
-    <form class="edit-form" th:action="@{'/Forms/editMark:form=' + ${form_id} +
-        ':subject=' + ${subject_id} + ':student='
-         + ${student_id} + ':mark=' + ${mark_id}}" th:method="PATCH" >
-        <input type="text" name="mark_value" placeholder="Оценка">
+    <form class="edit-form" th:action="@{'/Forms/editMark:form='
+    + ${form_id} +
+        ':subject=' + ${mark.getSubject_id()} + ':student='
+         + ${mark.getStudent_id()} + ':mark=' + ${mark.getId()}}" th:method="PATCH" th:object="${mark}">
+        <input type="text" name="mark_value" th:value="${mark.getMark_value()}"
+               th:field="*{mark_value}" placeholder="Оценка">
+        <input type="text" name="work_name" th:value="${mark.getWork_name()}"
+               th:field="*{work_name}" placeholder="Название работы">
         <input type="submit" value="Изменить">
     </form>
 
     <form class="delete-form" th:action="@{'/Forms/deleteMark:form=' + ${form_id} +
-        ':subject=' + ${subject_id} + ':student='
-         + ${student_id} + ':mark=' + ${mark_id}}" th:method="Delete" >
+        ':subject=' + ${mark.getSubject_id()} + ':student='
+         + ${mark.getStudent_id()} + ':mark=' + ${mark.getId()}}" th:method="Delete" >
         <input type="submit" value="Удалить">
     </form>
 </div>

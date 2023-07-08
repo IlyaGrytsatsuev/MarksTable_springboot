@@ -26,20 +26,17 @@
     ${subjectsAndMarks.getSubjectsList()}">
       <td class = "subject_name">
         <span th:text="${subject.getName()}"></span>
-        <span>
-                <a th:href="@{'/Forms/addMark:form=' +
-                ${form_id} +':subject=' + ${subject.getId()}
-                + ':student=' + ${subject.getStudent_id()}}">+</a>
-            </span>
+          <span class="mark">
+                <p th:text="${subject.getMedium_mark()}"></p>
+          </span>
       </td>
       <td class = "marks-column">
             <span class="empty-marks" th:if="${subject.getMarks().isEmpty()}">
                 Нет оценок
             </span>
         <span class="mark" th:each="mark : ${subject.getMarks()}">
-                <a th:href="@{'/Forms/editMark:form=' + ${form_id} +
-                ':subject=' + ${subject.getId()} + ':student='
-                + ${subjectsAndMarks.getStudent_id()} + ':mark='
+                <a th:href="@{'/SubMarks/form=' + ${form_id} +
+                '/student=' + ${subjectsAndMarks.getStudent_id()} + '/mark='
                 + ${mark.getKey()}}" th:text="${mark.getValue()}">mark</a>
             </span>
       </td>

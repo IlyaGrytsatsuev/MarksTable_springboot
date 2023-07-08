@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/MarkInfoStyle.css">
+</head>
+<body>
+<nav>
+    <div class="links">
+        <a th:href="@{'/SubMarks/form=' + ${form_id}
++ ':student=' +${mark.getStudent_id()} }">Назад</a>
+        <a href="/logout">Выйти</a>
+    </div>
+    <p>Информация об оценке</p>
+</nav>
+
+<div class="form-block">
+    <table>
+        <tr>
+            <td>
+                <div class="header">Название работы</div>
+                <div class="info" th:text="${mark.getWork_name()}"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="header">Оценка</div>
+                <div class="info" th:text="${mark.getMark_value()}"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="header">Дата</div>
+                <div class="info" th:text="${date}"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

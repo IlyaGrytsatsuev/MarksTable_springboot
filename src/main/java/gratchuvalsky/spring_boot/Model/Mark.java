@@ -3,15 +3,35 @@ package gratchuvalsky.spring_boot.Model;
 import java.sql.Date;
 
 public class Mark {
+    private int id;
+
     private int mark_value;
     private Date date;
+
     private int student_id;
     private int subject_id;
 
     private int form_id;
 
+
+    private String work_name;
+
     public Mark(){
 
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getWork_name() {
+        return work_name;
+    }
+
+    public void setWork_name(String work_name) {
+        this.work_name = work_name;
     }
 
     public void setForm_id(int form_id) {

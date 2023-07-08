@@ -37,6 +37,9 @@
                 <a th:href="@{'/Forms/addMark:form=' +
                 ${form_id} +':subject=' + ${subject.getId()}
                 + ':student=' + ${subject.getStudent_id()}}">+</a>
+                </span>
+            <span class="mark">
+                <p th:text="${subject.getMedium_mark()}"></p>
             </span>
         </td>
         <td class = "marks-column">

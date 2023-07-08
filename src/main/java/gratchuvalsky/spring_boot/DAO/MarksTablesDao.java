@@ -107,13 +107,22 @@ public class MarksTablesDao {
         jdbcTemplate.update("delete from subjects where id = ?", new Object[]{subject_id});
     }
 
-    public void editMark(int mark_id, int mark_value){
-        jdbcTemplate.update("update marks set mark_value = ? where id = ?", mark_value, mark_id);
+    public void editMark(int mark_id, int mark_value, String work_name){
+        jdbcTemplate.update("update marks set mark_value = ?, work_name = ?" +
+                " where id = ?", mark_value, work_name, mark_id);
+
     }
     public void add_mark(Mark mark){
-       jdbcTemplate.update("insert into marks(mark_value, date, student_id, subject_id) values(?, ?, ?, ?)",
-               mark.getMark_value(), mark.getDate(), mark.getStudent_id(), mark.getSubject_id());
+       jdbcTemplate.update("insert into marks(mark_value, date, student_id, subject_id, work_name) values(?, ?, ?, ?, ?)",
+               mark.getMark_value(), mark.getDate(), mark.getStudent_id(), mark.getSubject_id(), mark.getWork_name());
 
+    }
+
+    public Mark getMark(int mark_id){
+        Mark res = jdbcTemplate.query("select * from marks where id = ?",
+                new Object[]{mark_id}, new BeanPropertyRowMapper<Mark>(Mark.class))
+                .stream().findAny().orElse(null);
+        return res;
     }
 
 
@@ -126,7 +135,7 @@ public class MarksTablesDao {
     }
 
     public List<FormAndId> getSchoolFormsList() {
-        List<FormAndId> forms_list = jdbcTemplate.query("select id, form_name from forms", new BeanPropertyRowMapper(FormAndId.class));
+        List<FormAndId> forms_list = jdbcTemplate.query("select id, form_name from forms order by form_name", new BeanPropertyRowMapper(FormAndId.class));
         return forms_list;
     }
 
@@ -211,6 +220,7 @@ public class MarksTablesDao {
         subject.setName(name);
         subject.setId(subject_id);
         subject.setStudent_id(student_id);
+        subject.countMediumMark();
         return subject;
     }
 

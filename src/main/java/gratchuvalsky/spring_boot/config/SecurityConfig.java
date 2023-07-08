@@ -55,7 +55,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth",
                                 "/error", "/loginStyle.css",
                                 "/signUp", "/login_success",
-                                "/SubjectsAndMarksStyle.css").permitAll()
+                                "/SubjectsAndMarksStyle.css",
+                                "MarkInfoStyle.css").permitAll()
                         .anyRequest().hasRole("ADMIN"));
         http.userDetailsService(personDetailsService);
         http.formLogin((formLogin) -> formLogin.loginPage("/auth")

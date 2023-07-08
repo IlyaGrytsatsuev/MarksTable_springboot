@@ -70,13 +70,17 @@ a, th{
     color: blue;
 }
 
-.mark a{
+.mark a, .mark p{
     display: inline-block;
     border: 1px solid blue;
     padding: 8px;
     margin: 3px;
     border-radius: 8px;
     text-decoration: none;
+}
+.mark p{
+    text-align: right;
+    float: right;
 }
 .mark a:hover{
     background-color: blue;

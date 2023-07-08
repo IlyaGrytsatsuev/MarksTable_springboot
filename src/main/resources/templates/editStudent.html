@@ -8,16 +8,16 @@
 <body>
 <nav>
     <div class="links">
-        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Back</a>
-        <a th:href="@{/Forms}">Home</a>
+        <a th:href="@{'/Forms/Students:form=' + ${form_id}}">Назад</a>
+        <a th:href="@{/Forms}">Список классов</a>
     </div>
-    <p>Edit student</p>
+    <p>Редактирование ученика</p>
 </nav>
 <div class="form-block">
     <form th:action="@{'/Forms/editStudent:form=' + ${form_id} + ':student=' + ${student_id} }" th:method="PATCH" >
-        <input type="text" name="name" th:value="${student.getName()}" placeholder="name">
-        <input type="text" name="surname" th:value="${student.getSurname()}" placeholder="surname">
-        <input type="submit" value="edit">
+        <input type="text" name="surname" th:value="${student.getSurname()}" placeholder="Фамилия">
+        <input type="text" name="name" th:value="${student.getName()}" placeholder="Имя">
+        <input type="submit" value="Изменить">
     </form>
 </div>
 
