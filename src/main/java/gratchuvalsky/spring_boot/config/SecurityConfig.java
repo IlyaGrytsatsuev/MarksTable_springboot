@@ -71,10 +71,5 @@ public class SecurityConfig {
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
-//    @Bean
-//    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-//        return new MySimpleUrlAuthenticationSuccessHandler();
-//    }
-
 
 }

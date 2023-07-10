@@ -12,12 +12,14 @@
     <form method="post" action="/process_login">
         <input type="text" name="username" placeholder="Логин">
         <input type="text" name="password" placeholder="Пароль">
+        <div th:if="${param.error}" style="color: red">
+            Неправильный логин или пароль
+        </div>
         <input type="submit" value="Войти">
     </form>
 </div>
 
-<div th:if="${param.error}" style="color: red">
-</div>
+
 <body>
 
 </body>
