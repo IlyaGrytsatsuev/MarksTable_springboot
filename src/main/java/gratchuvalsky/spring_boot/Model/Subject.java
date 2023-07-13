@@ -22,11 +22,11 @@ public class Subject {
         return medium_mark;
     }
     public void countMediumMark(){
-        int sum = 0;
+        double sum = 0;
         for(int key : marks.keySet())
-            sum+=marks.get(key);
-        sum/=marks.keySet().size();
-        this.medium_mark = sum;
+            sum+=(double) marks.get(key);
+        sum/=(double)marks.keySet().size();
+        this.medium_mark = (int) Math.round(sum);
     }
 
     public void setMedium_mark(int medium_mark) {

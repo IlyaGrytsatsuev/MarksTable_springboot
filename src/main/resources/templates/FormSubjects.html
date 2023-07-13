@@ -21,7 +21,7 @@
 </p>
 <div class="subjects-list">
     <div class="subject-card" th:each="subject_name : ${subjects_names}">
-        <a th:text="${subject_name}">name</a>
+        <a class="form-link" th:text="${subject_name}">name</a>
         <form th:action="@{'/Forms/editSubject:form=' + ${res.getForm_id()} + ':subject='
      + ${subjects_ids.get(subjects_names.indexOf(subject_name))}}" th:method="GET">
             <input type="submit" value="Изменить">

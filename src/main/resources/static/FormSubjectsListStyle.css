@@ -49,17 +49,25 @@ nav p {
     color: blue;
     padding-right: 10px;
 }
+nav a:hover{
+    background-color: blue;
+    color: white;
+}
 
 
 input{
     display: inline-block;
     text-decoration: none;
-    color: white;
-    background-color: blue;
+    color: blue;
+    background-color: white;
     border: 1px solid blue;
     border-radius: 100px;
     padding: 0.3em 0.6em;
     margin: 3px;
+}
+input:hover{
+    color: white;
+    background-color: blue;
 }
 .subject-card{
     display: flex;
@@ -75,4 +83,8 @@ form{
     margin: 3px;
     margin-top: 5px;
     color:blue;
+}
+
+.form-link:hover{
+    color: darkblue;
 }
